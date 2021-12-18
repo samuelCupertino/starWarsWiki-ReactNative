@@ -1,3 +1,6 @@
+import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native'
+
 import {
     useFonts,
     SourceSansPro_400Regular,

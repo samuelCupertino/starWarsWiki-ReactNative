@@ -1,9 +1,14 @@
 import styled from 'styled-components/native'
 
 export const CustomText = styled.Text`
-    color: ${props => props.color || '#fff'};
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 10px;
-    font-family: 'SourceSansPro_700Bold';
+    font-size: ${({ theme, size }) => theme.metrics.px(size || 24)}px;
+    color: ${({ theme, color }) => theme.colors[color || 'white']};
+    margin: 
+        ${({ theme, mt }) => theme.metrics.px(mt || 0)}px
+        ${({ theme, mr }) => theme.metrics.px(mr || 0)}px
+        ${({ theme, mb }) => theme.metrics.px(mb || 0)}px
+        ${({ theme, ml }) => theme.metrics.px(ml || 0)}px
+    ;
+    font-family: ${({ theme, fontFamily }) =>
+        theme.fonts[fontFamily || 'regular']};
 `

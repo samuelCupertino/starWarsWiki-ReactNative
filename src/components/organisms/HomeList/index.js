@@ -2,24 +2,26 @@
 import { FlatList } from 'react-native'
 import { Text } from '../../atoms'
 import { Card } from '../../molecules'
+import { HomeListContainer } from './styles'
+import { theme } from '~/styles/theme'    
 
-const FAKE_DATA = [
-    {
-        id: 1,
-        image_url: 'https://starwars-visualguide.com/assets/img/characters/1.jpg',
-    },
-    {
-        id: 2,
-        image_url: 'https://starwars-visualguide.com/assets/img/characters/2.jpg',
-    }
-]
-export const HomeList = () => {
+export const HomeList = ({ data, title}) => {
     return (
-        <FlatList
-            horizontal
-            data={FAKE_DATA}
-            renderItem={({ item }) => <Card item={item} />}
-            keyExtractor={item => item.id}
-        />
+        <HomeListContainer>
+            <Text ml={24} fontFamily="black" size={18}>
+                {title}
+            </Text>
+            <FlatList
+                horizontal
+                data={data}
+                renderItem={({ item }) => <Card item={item} />}
+                keyExtractor={item => item.id}
+                contentContainerStyle={{
+                    paddingTop: theme.metrics.px(12),
+                    paddingLeft: theme.metrics.px(24),
+                    paddingBottom: theme.metrics.px(24)
+                }}
+            />
+        </HomeListContainer>
     )
 }
