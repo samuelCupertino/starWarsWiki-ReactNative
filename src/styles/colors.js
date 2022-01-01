@@ -3,5 +3,7 @@ export const colors = {
     light: '#E5E5E5',
     red: '#E60C0D',
     dark: '#161616',
-    black: '#000000'
+    black: '#000000',
+    gray: '#5B5B5B',
+    darkTransparent: alpha => `rgba(22, 22, 22, ${alpha ?? .5})`,
 }

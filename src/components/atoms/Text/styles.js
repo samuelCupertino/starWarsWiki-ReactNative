@@ -11,4 +11,5 @@ export const CustomText = styled.Text`
     ;
     font-family: ${({ theme, fontFamily }) =>
         theme.fonts[fontFamily || 'regular']};
+    line-height: ${({ theme, lh, size }) => theme.metrics.px(lh || size || 24)}px;
 `

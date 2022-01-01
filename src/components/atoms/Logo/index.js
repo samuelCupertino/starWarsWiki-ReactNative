@@ -6,6 +6,6 @@ const sizeToPx = {
     large: 64,
 }
 
-export const Logo = ({ size }) => {
-    return <LogoImage source={logoImage} size={sizeToPx[size || 'large']} />
-}
+export const Logo = ({ size }) => (
+    <LogoImage source={logoImage} size={sizeToPx[size || 'large']} />
+)

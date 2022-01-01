@@ -5,7 +5,7 @@ import { Card } from '../../molecules'
 import { HomeListContainer } from './styles'
 import { theme } from '~/styles/theme'    
 
-export const HomeList = ({ data, title}) => {
+export const HomeList = ({ data, title, type }) => {
     return (
         <HomeListContainer>
             <Text ml={24} fontFamily="black" size={18}>
@@ -14,7 +14,7 @@ export const HomeList = ({ data, title}) => {
             <FlatList
                 horizontal
                 data={data}
-                renderItem={({ item }) => <Card item={item} />}
+                renderItem={({ item }) => <Card mr={12} item={{...item, type}} />}
                 keyExtractor={item => item.id}
                 contentContainerStyle={{
                     paddingTop: theme.metrics.px(12),

@@ -1,0 +1,12 @@
+I learned :
+- Atomic Design
+- Styles Metrics
+- Navigation
+- Zustand (Global-State)
+- Ionicons, 
+- Lineargradient
+- Custom Hook
+- Axios
+- Youtube Iframe
+- Async Storage
+- React Navigation

@@ -12,8 +12,15 @@ const px = (valuePx) => {
     return screenPixel
 }
 
+const vh = value => (value / 100) * height
+
+const vw = value => (value / 100) * width
+
+
 export const metrics = {
     px,
+    vh,
+    vw,
     width,
     height,
 }

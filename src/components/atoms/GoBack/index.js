@@ -6,7 +6,7 @@ export const GoBack = () => {
     const navigation = useNavigation()
 
     return (
-        <GoBackContainer onPress={()=> navigation.navigate('Home')}>
+        <GoBackContainer onPress={()=> navigation.goBack()}>
             <Ionicons name='chevron-back' size={24} color='white' />
         </GoBackContainer>
     )

@@ -1,41 +1,48 @@
-import { ScreenScrollContainer, HomeList, Hero } from '../../components'
+import { 
+    ScreenScrollContainer, 
+    Container,
+    HomeList, 
+    Hero, 
+    Loader 
+} from '../../components'
 
-const FAKE_DATA = [
-    {
-        id: 1,
-        image_url: 'https://starwars-visualguide.com/assets/img/characters/1.jpg',
-        title: 'Ameaça Fantasma',
-        subtitle: 'Episódio I',
-        description: 'A Ameaça Fantasma é uma série de televisão de ficção científica, estrelando episódios de uma série de filmes de fantasia criada por George Lucas, que se passa em um universo fictício, onde os personagens são fictícios, mas os personagens são reais.',
-        type: 'movie'
-    },
-    {
-        id: 2,
-        image_url: 'https://starwars-visualguide.com/assets/img/characters/2.jpg',
-        title: 'Ameaça Fantasma',
-        subtitle: 'Episódio II',
-        description: 'A Ameaça Fantasma é uma série de televisão de ficção científica, estrelando episódios de uma série de filmes de fantasia criada por George Lucas, que se passa em um universo fictício, onde os personagens são fictícios, mas os personagens são reais.',
-        type: 'movie'
-    },
+import { useGetData } from '~/services/hooks'
+import { useEffect, useState } from 'react'
 
-]
+const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+
+const randomItem = (array) => array[random(0, array.length - 1)]
 
 export const Home = () => {
+    const { getFilms, getCharacters } = useGetData()
+    const [loading, setLoading] = useState(true)
+    const [films, setFilms] = useState([])
+    const [characters, setCharacters] = useState([])
+
+    useEffect(async () => {
+        const filmsRes = await getFilms()
+        const charactersRes = await getCharacters()
+
+        if (!filmsRes.error && !charactersRes.error) {
+            setFilms(filmsRes)
+            setCharacters(charactersRes)
+            setLoading(false)
+        }
+    }, [])
+
+    if (loading) {
+        return (
+            <Container justify="center" align="center">
+                <Loader />
+            </Container>
+        )
+    }
+
     return (
         <ScreenScrollContainer>
-            <Hero item={{
-                title: 'Episódio I',
-                subtitle: 'A Ameaça Fantasma',
-                type: 'Filme',
-                image_url: 'https://static.wikia.nocookie.net/starwars/images/7/75/EPI_TPM_poster.png/revision/latest?cb=20130822171446'            }}/>
-            <HomeList
-                title="Filmes"
-                data={FAKE_DATA}
-            />
-            <HomeList
-                title="Personagens"
-                data={FAKE_DATA}
-            />
+            <Hero item={{ ...randomItem(films), type: 'Filmes' }} />
+            <HomeList title="Filmes" data={films} type="Filme" />
+            <HomeList title="Personagens" data={characters} type="Personagem" />
         </ScreenScrollContainer>
     )
 }
